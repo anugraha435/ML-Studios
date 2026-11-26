@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: ml-studio-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /health
+    plan: free
+    envVars:
+      - key: ALLOWED_ORIGINS
+        sync: false   # set to your frontend origin, e.g. https://your-site.vercel.app
+      - key: RATE_LIMIT
+        value: 30/minute
